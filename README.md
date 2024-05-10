@@ -53,9 +53,23 @@ docker-compose up
 Push the database schema with 
 
 ```bash
-$ pnpm run db:push
+pnpm run db:push
 ```
 
 > [!IMPORTANT]  
 > When using the docker compose template, the DB schema will have to be pushed as above 
 > every time you restart the postgres container.
+
+## Run Tests
+
+To run **unit** tests in all workspaces:
+
+```bash
+pnpm run test
+```
+
+To run **e2e** tests in all workspaces:
+
+```bash
+pnpm run test:e2e
+```
