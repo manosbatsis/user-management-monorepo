@@ -57,8 +57,7 @@ pnpm run db:push
 ```
 
 > [!IMPORTANT]  
-> When using the docker compose template, the DB schema will have to be pushed as above 
-> every time you restart the postgres container.
+> When using the docker compose template, you must push the DB schema every time you restart the postgres container.
 
 ## Run Tests
 
@@ -73,3 +72,8 @@ To run **e2e** tests in all workspaces:
 ```bash
 pnpm run test:e2e
 ```
+
+HTML test reports for your browser are published in _packages/*/output_.
+
+> [!TIP]
+> Test results are also published in Github Actions and Pull Requests
