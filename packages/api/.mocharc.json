@@ -5,8 +5,6 @@
 		"ts"
 	],
 	"package": "./package.json",
-	"reporter": "mochawesome",
-	"reporter-options": "reportDir=outputs/mochawesome",
 	"slow": 75,
 	"timeout": 2000,
 	"ui": "bdd",
@@ -14,6 +12,5 @@
 	"exit": true,
 	"require": [
 		"ts-node/register"
-	],
-	"spec": []
+	]
 }

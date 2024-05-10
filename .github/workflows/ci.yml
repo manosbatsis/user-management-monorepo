@@ -76,4 +76,4 @@ jobs:
         continue-on-error: true
         with:
           files: |
-            packages/*/outputs/mochawesome/*.json
+            packages/api/output/*.xml
