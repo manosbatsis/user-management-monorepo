@@ -1,5 +1,4 @@
-# Install the Nest server, deploy a Postgres database, push the Prisma database model and run the integration and End-to-End tests
-name: Tests CI
+name: CI
 
 on:
   push:
@@ -9,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -66,8 +64,8 @@ jobs:
       - name: Push DB Schema
         run: pnpm run db:push
 
-      - name: Runt Unit Tests
+      - name: Run Unit Tests
         run: pnpm run test
 
-      - name: Runt E2E Tests
+      - name: Run E2E Tests
         run: pnpm run test:e2e
