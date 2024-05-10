@@ -6,17 +6,14 @@
 	],
 	"package": "./package.json",
 	"reporter": "mochawesome",
-	"reporter-options": "reportDir=outputs/mochawesome-report,json=false",
+	"reporter-options": "reportDir=outputs/mochawesome",
 	"slow": 75,
 	"timeout": 2000,
 	"ui": "bdd",
 	"full-trace": true,
 	"exit": true,
 	"require": [
-		"ts-node/register"    
+		"ts-node/register"
 	],
-	"spec": [
-		"test/**/*spec.ts",
-		"src/**/*spec.ts"
-	]
+	"spec": []
 }

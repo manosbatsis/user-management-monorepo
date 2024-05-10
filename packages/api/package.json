@@ -13,8 +13,8 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-    "test": "mocha -r ts-node/register --reporter mochawesome --reporter-options json=false --exit",
-    "test:e2e": "mocha -r ts-node/register test/**/*spec.ts --reporter mochawesome --reporter-options json=false --exit",
+    "test": "mocha -r ts-node/register src/**/*spec.ts --reporter mochawesome --reporter-options reportFilename=mocha-unit-tests",
+    "test:e2e": "mocha -r ts-node/register test/**/*spec.ts --reporter mochawesome --reporter-options reportFilename=mocha-e2e-tests",
     "test:cov": "nyc --reporter=text mocha",
     "test:context": "ts-node test/context.ts --exit",
     "db:push": "npx prisma db push"
