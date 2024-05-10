@@ -75,6 +75,5 @@ jobs:
         if: always()
         continue-on-error: true
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            packages/api/outputs/mochawesome/*.json
+            packages/*/outputs/mochawesome/*.json
