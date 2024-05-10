@@ -73,4 +73,4 @@ pnpm run test:e2e
 HTML test reports for your browser are published in _packages/*/output_.
 
 > [!TIP]
-> Test results are also published in Github Actions and Pull Requests
+> Test results are also published as the build summary in Github Actions and a comment in Pull Requests.
