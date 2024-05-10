@@ -1,0 +1,73 @@
+# Install the Nest server, deploy a Postgres database, push the Prisma database model and run the integration and End-to-End tests
+name: Tests CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.9.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Setup PostgreSQL
+        uses: Harmon758/postgresql-action@v1.0.0
+        with:
+          postgresql version: '16.3'
+          postgresql db: neststarter
+          postgresql user: nest
+          postgresql password: password
+
+      - name: Copy API Config File
+        uses: canastro/copy-action@0.0.2
+        with:
+          source: "packages/api/src/assets/config-template.json"
+          target: "packages/api/src/assets/config.json"
+
+      - name: Copy API Environment File
+        uses: canastro/copy-action@0.0.2
+        with:
+          source: "packages/api/.env.template-local"
+          target: "packages/api/.env"
+
+      - name: Push DB Schema
+        run: pnpm run db:push
+
+      - name: Runt Unit Tests
+        run: pnpm run test
+
+      - name: Runt E2E Tests
+        run: pnpm run test:e2e

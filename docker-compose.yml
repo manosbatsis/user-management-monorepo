@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:16.3
+    # Note we are using a custom port
+    ports:
+      - "5433:5433"
+    environment:
+      - PGPORT=5433
+      - POSTGRES_USER=nest
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=neststarter

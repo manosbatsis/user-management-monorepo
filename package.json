@@ -1,0 +1,25 @@
+{
+  "name": "user-management-monorepo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "client": "pnpm --filter \"web\" run dev",
+    "server": "pnpm --filter \"api\" run dev",
+    "start": "pnpm --stream -r start",
+    "start:dev": "pnpm --stream -r start:dev",
+    "test": "pnpm --stream -r test",
+    "test:e2e": "pnpm --stream -r test:e2e",
+    "clean": "rm -rf .parcel-cache && pnpm -r run clean",
+    "app": "pnpm run client & pnpm run server",
+    "db:push": "pnpm --filter \"api\" run db:push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "AGPL",
+  "engines" : {
+    "npm" : ">=10.0.0 <11.0.0",
+    "node" : ">=20.0.0 <21.0.0"
+  },
+  "packageManager": "pnpm@8.9.0"
+}
