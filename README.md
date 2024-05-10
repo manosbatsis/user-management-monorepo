@@ -56,9 +56,6 @@ Push the database schema with
 pnpm run db:push
 ```
 
-> [!IMPORTANT]  
-> When using the docker compose template, you must push the DB schema every time you restart the postgres container.
-
 ## Run Tests
 
 To run **unit** tests in all workspaces:
