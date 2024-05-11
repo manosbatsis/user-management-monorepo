@@ -15,7 +15,6 @@ import {
 import { Request } from 'express';
 import { RoleGuard } from '../../core/guards/role.guard';
 import { Roles } from '../../core/decorators/roles.decorator';
-import { TokenGuard } from '../../core/guards/token.guard';
 import { EmployeeService } from '../../core/employee/employee.service';
 import {
 	ApiBody,
@@ -30,10 +29,11 @@ import CreateEmployeeDTO from '../../core/employee/dto/create-employee.dto';
 import UpdateEmployeeDTO from '../../core/employee/dto/update-employee.dto';
 import Employee from '../../core/employee/entities/employee.entity';
 import { UserRole } from '../../core/user/entities/user.entity';
+import { JwtAuthGuard } from '../../core/guards/jwt-auth.guard';
 
 @Controller('employees')
 @ApiTags('Employees')
-@UseGuards(TokenGuard, RoleGuard)
+@UseGuards(JwtAuthGuard, RoleGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 export class EmployeeController {
 	constructor(private readonly employeeService: EmployeeService) {}

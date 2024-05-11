@@ -56,6 +56,12 @@ Push the database schema with
 pnpm run db:push
 ```
 
+then seed with sample data:
+
+```bash
+pnpm run db:seed
+```
+
 ## Run Tests
 
 To run **unit** tests in all workspaces:

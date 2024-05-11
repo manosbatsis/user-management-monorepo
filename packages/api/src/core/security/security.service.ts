@@ -11,6 +11,9 @@ export class SecurityService {
 	}
 
 	comparePasswords(password: string, hash: string): boolean {
-		return bcrypt.compareSync(password, hash);
+		console.log('comparePasswords', password, hash);
+		const result = bcrypt.compareSync(password, hash);
+		console.log('comparePasswords, result', result);
+		return result;
 	}
 }

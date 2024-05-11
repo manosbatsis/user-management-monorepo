@@ -2,54 +2,54 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+	provider = "prisma-client-js"
 }
 
 // The mandatory  fields are the email, first name, last name,
 model User {
-  id        String     @id @default(uuid())
-  email     String     @unique
-  password  String
-  firstName String     @map("first_name")
-  lastName  String     @map("last_name")
-  ip        String?
-  token     String?    @unique
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
-  role      String     @default("basic")
-  positions Employee[]
+	id        String     @id @default(uuid())
+	email     String     @unique
+	password  String
+	firstName String     @map("first_name")
+	lastName  String     @map("last_name")
+	ip        String?
+	token     String?    @unique
+	createdAt DateTime   @default(now()) @map("created_at")
+	updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
+	role      String     @default("basic")
+	positions Employee[]
 
-  @@map("users")
+	@@map("users")
 }
 
 // The business name and the location is a mandatory piece of information that should be captured for every business.
 // The type of business is an optional field.
 model Business {
-  id        String     @id @default(uuid())
-  name      String
-  location  String
-  type      String?    @map("business_type")
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
-  employees Employee[]
+	id        String     @id @default(uuid())
+	name      String     @unique
+	location  String
+	type      String?    @map("business_type")
+	createdAt DateTime   @default(now()) @map("created_at")
+	updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
+	employees Employee[]
 
-  @@map("businesses")
+	@@map("businesses")
 }
 
 model Employee {
-  id         String   @id @default(uuid())
-  business   Business @relation(fields: [businessId], references: [id])
-  businessId String   @map("business_id")
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String   @map("user_id")
-  telNumber  String?  @map("tel_number")
-  position   String
+	id         String   @id @default(uuid())
+	business   Business @relation(fields: [businessId], references: [id])
+	businessId String   @map("business_id")
+	user       User     @relation(fields: [userId], references: [id])
+	userId     String   @map("user_id")
+	telNumber  String?  @map("tel_number")
+	position   String
 
-  @@unique([businessId, userId], name: "businessEmployeeIdentifier")
-  @@map("employees")
+	@@unique([businessId, userId], name: "businessEmployeeIdentifier")
+	@@map("employees")
 }
