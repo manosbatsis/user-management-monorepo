@@ -35,10 +35,6 @@ export default class UserRepository {
 		return User.from(user, { withPassword });
 	}
 
-	public async findOneByToken(token: string): Promise<User> {
-		return User.from(await this.prisma.user.findFirst({ where: { token } }));
-	}
-
 	public async remove(id: string): Promise<void> {
 		await this.prisma.user.delete({ where: { id } });
 	}

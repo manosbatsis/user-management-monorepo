@@ -5,8 +5,6 @@ import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { IAuthenticationResponse, sessionHelper } from './sessionHelper';
 import {HttpError} from "@refinedev/core";
 
-console.info("Starting with Vite mode:", process.env.MODE);
-console.info("API URL:", process.env.VITE_REACT_APP_API_URL);
 axios.defaults.baseURL = process.env.VITE_REACT_APP_API_URL;
 axios.defaults.timeout = 20000;
 

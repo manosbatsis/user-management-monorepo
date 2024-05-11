@@ -27,7 +27,6 @@ export const authProvider: AuthBindings = {
         password
       });
 
-      console.log("register redirecting to login")
       return {
         success: true,
         redirectTo: "/login",
@@ -55,7 +54,6 @@ export const authProvider: AuthBindings = {
     },
     logout: async (props) => {
       sessionHelper.removeUserSession();
-      console.log("logout redirecting to login")
       return {
         success: true,
         redirectTo: props?.redirectPath || "/login",
@@ -75,7 +73,6 @@ export const authProvider: AuthBindings = {
     },
     check: async () => {
       if (!await sessionHelper.getIdentity()) {
-        console.log("check redirecting to login")
         return {
           authenticated: false,
           error: new Error("No token found"),

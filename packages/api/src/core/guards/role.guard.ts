@@ -20,8 +20,6 @@ export class RoleGuard implements CanActivate {
 			context.getHandler(),
 			context.getClass()
 		]);
-		console.log('RoleGuard canActivate, requiredRoles', requiredRoles);
-		console.log('RoleGuard canActivate, user', request.user.role);
 		// If no role is provided
 		if (!requiredRoles) {
 			return true;

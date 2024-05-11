@@ -32,8 +32,6 @@ export default class HttpClient {
 	}
 
 	public setUser(user: { token: string, user: User }) {
-
-		console.log("setUser", user);
 		this.user = user.user;
 		this.setToken(user.token);
 	}

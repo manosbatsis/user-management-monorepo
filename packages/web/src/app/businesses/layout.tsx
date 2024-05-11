@@ -7,9 +7,7 @@ export default async function Layout({ children }: React.PropsWithChildren) {
   const data = await getData();
 
   if (!data.authenticated) {
-
-    console.log("Layout redirecting to login")
-    return redirect(data?.redirectTo || "/login");
+    //return redirect(data?.redirectTo || "/login");
   }
 
   return <ThemedLayout>{children}</ThemedLayout>;
