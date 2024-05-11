@@ -7,11 +7,12 @@ import {
   ShowButton,
   DeleteButton,
   List,
+  EmailField,
   DateField,
 } from "@refinedev/mui";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
-const BusinessList = () => {
+const UserList = () => {
   const { dataGridProps } = useDataGrid();
 
   const columns = React.useMemo<GridColDef[]>(
@@ -22,21 +23,24 @@ const BusinessList = () => {
         minWidth: 50,
       },
       {
-        field: "name",
+        field: "email",
         flex: 1,
-        headerName: "Name",
+        headerName: "Email",
+        minWidth: 250,
+        renderCell: function render({ value }) {
+          return <EmailField value={value} />;
+        },
+      },
+      {
+        field: "firstName",
+        flex: 1,
+        headerName: "First Name",
         minWidth: 200,
       },
       {
-        field: "location",
+        field: "lastName",
         flex: 1,
-        headerName: "Location",
-        minWidth: 200,
-      },
-      {
-        field: "type",
-        flex: 1,
-        headerName: "Type",
+        headerName: "Last Name",
         minWidth: 200,
       },
       {
@@ -56,6 +60,12 @@ const BusinessList = () => {
         renderCell: function render({ value }) {
           return <DateField value={value} />;
         },
+      },
+      {
+        field: "role",
+        flex: 1,
+        headerName: "Role",
+        minWidth: 200,
       },
       {
         field: "actions",
@@ -85,5 +95,4 @@ const BusinessList = () => {
   );
 };
 
-export default BusinessList
-
+export default UserList

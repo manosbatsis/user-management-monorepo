@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 import { Refine, GitHubBanner } from "@refinedev/core";
 import { DevtoolsProvider } from "@providers/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { notificationProvider, RefineSnackbarProvider, Title } from '@refinedev/mui';
 import routerProvider from "@refinedev/nextjs-router";
 
 import { dataProvider } from "@providers/data-provider";
@@ -19,7 +19,9 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-
+const CustomTitle = ({ collapsed }) => (
+  <div>{collapsed ? "User Admin" : "UA"}</div>
+);
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,9 +36,12 @@ export default function RootLayout({
       <body>
         <Suspense>
           <RefineKbarProvider>
+
             <ColorModeContextProvider defaultMode={defaultMode}>
               <RefineSnackbarProvider>
-                <DevtoolsProvider>
+
+
+                {/*<DevtoolsProvider>*/}
                   <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider}
@@ -53,16 +58,26 @@ export default function RootLayout({
                           canDelete: true,
                         },
                       },
-                      /*{
-                        name: "categories",
-                        list: "/categories",
-                        create: "/categories/create",
-                        edit: "/categories/edit/:id",
-                        show: "/categories/show/:id",
+                      {
+                        name: "users",
+                        list: "/users",
+                        create: "/users/create",
+                        edit: "/users/edit/:id",
+                        show: "/users/show/:id",
                         meta: {
                           canDelete: true,
                         },
-                      },*/
+                      },
+                      {
+                        name: "employees",
+                        list: "/employees",
+                        create: "/employees/create",
+                        edit: "/employees/edit/:id",
+                        show: "/employees/show/:id",
+                        meta: {
+                          canDelete: true,
+                        },
+                      },
                     ]}
                     options={{
                       syncWithLocation: true,
@@ -74,7 +89,7 @@ export default function RootLayout({
                     {children}
                     <RefineKbar />
                   </Refine>
-                </DevtoolsProvider>
+                  {/*</DevtoolsProvider>*/}
               </RefineSnackbarProvider>
             </ColorModeContextProvider>
           </RefineKbarProvider>

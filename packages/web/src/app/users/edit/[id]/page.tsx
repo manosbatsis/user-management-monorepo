@@ -1,10 +1,12 @@
 "use client";
 
+import { MuiEditInferencer } from '@refinedev/inferencer/mui';
+
 import { Edit } from "@refinedev/mui";
 import { Box, TextField } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
 
-const BusinessEdit = () => {
+const UserEdit = () => {
   const {
     saveButtonProps,
     refineCore: { queryResult },
@@ -13,7 +15,7 @@ const BusinessEdit = () => {
     formState: { errors },
   } = useForm();
 
-  const businessesData = queryResult?.data?.data;
+  const usersData = queryResult?.data?.data;
 
   return (
     <Edit saveButtonProps={saveButtonProps}>
@@ -37,43 +39,43 @@ const BusinessEdit = () => {
           disabled
         />
         <TextField
-          {...register("name", {
+          {...register("email", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.name}
-          helperText={(errors as any)?.name?.message}
+          error={!!(errors as any)?.email}
+          helperText={(errors as any)?.email?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
-          type="text"
-          label="Name"
-          name="name"
+          type="email"
+          label="Email"
+          name="email"
         />
         <TextField
-          {...register("location", {
+          {...register("firstName", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.location}
-          helperText={(errors as any)?.location?.message}
+          error={!!(errors as any)?.firstName}
+          helperText={(errors as any)?.firstName?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
           type="text"
-          label="Location"
-          name="location"
+          label="First Name"
+          name="firstName"
         />
         <TextField
-          {...register("type", {
+          {...register("lastName", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.type}
-          helperText={(errors as any)?.type?.message}
+          error={!!(errors as any)?.lastName}
+          helperText={(errors as any)?.lastName?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
           type="text"
-          label="Type"
-          name="type"
+          label="Last Name"
+          name="lastName"
         />
         {/*
                     DatePicker component is not included in "@refinedev/mui" package.
@@ -112,10 +114,23 @@ const BusinessEdit = () => {
           label="Updated At"
           name="updatedAt"
         />
+        <TextField
+          {...register("role", {
+            required: "This field is required",
+          })}
+          error={!!(errors as any)?.role}
+          helperText={(errors as any)?.role?.message}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="text"
+          label="Role"
+          name="role"
+        />
       </Box>
     </Edit>
   );
 };
 
 
-export default BusinessEdit
+export default UserEdit
