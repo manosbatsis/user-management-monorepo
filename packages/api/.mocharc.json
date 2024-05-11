@@ -5,18 +5,12 @@
 		"ts"
 	],
 	"package": "./package.json",
-	"reporter": "mochawesome",
-	"reporter-options": "reportDir=outputs/mochawesome-report,json=false",
 	"slow": 75,
 	"timeout": 2000,
 	"ui": "bdd",
 	"full-trace": true,
 	"exit": true,
 	"require": [
-		"ts-node/register"    
-	],
-	"spec": [
-		"test/**/*spec.ts",
-		"src/**/*spec.ts"
+		"ts-node/register"
 	]
 }

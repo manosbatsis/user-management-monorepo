@@ -97,15 +97,12 @@ describe('EmployeeService', () => {
 	describe('update', () => {
 		it('Should update the created employee', async () => {
 			const employee = await createEmployee(employeeService, userService, businessService);
-			console.log('employee', employee);
 			const newEmployeeData = {
 				...employee,
 				telNumber: faker.phone.number(),
 				position: faker.helpers.enumValue(EmployeePosition)
 			};
-			console.warn('newEmployeeData', newEmployeeData);
 			const updatedEmployee = await employeeService.update(employee.id, newEmployeeData);
-			console.warn('updatedEmployee', updatedEmployee);
 			expect(updatedEmployee).containSubset(newEmployeeData);
 		});
 

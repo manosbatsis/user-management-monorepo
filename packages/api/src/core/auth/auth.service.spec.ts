@@ -11,6 +11,7 @@ import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
 import chaiSubset from 'chai-subset';
 import chaiExclude from 'chai-exclude';
+import { JwtService } from '@nestjs/jwt';
 
 chai.use(chaiSubset);
 chai.use(chaiExclude);
@@ -24,7 +25,7 @@ describe('AuthService', function () {
 	beforeEach(async () => {
 		module = await Test.createTestingModule({
 			imports: [UserModule, AuthModule, SecurityModule],
-			providers: [AuthService]
+			providers: [AuthService, JwtService]
 		}).compile();
 
 		authService = module.get<AuthService>(AuthService);

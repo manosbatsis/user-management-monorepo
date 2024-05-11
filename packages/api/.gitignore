@@ -1,6 +1,9 @@
 # compiled output
 /dist
 /node_modules
+# Mocha
+output/
+mochawesome/
 
 # Logs
 logs
@@ -36,8 +39,6 @@ lerna-debug.log*
 # Prisma
 .env
 
-# Mochawesome
-outputs/
 
 # Assets
 src/assets/config.json

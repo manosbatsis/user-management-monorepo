@@ -15,7 +15,6 @@ import {
 import { Request } from 'express';
 import { RoleGuard } from '../../core/guards/role.guard';
 import { Roles } from '../../core/decorators/roles.decorator';
-import { TokenGuard } from '../../core/guards/token.guard';
 import { BusinessService } from '../../core/business/business.service';
 import {
 	ApiBody,
@@ -30,10 +29,11 @@ import CreateBusinessDTO from '../../core/business/dto/create-business.dto';
 import UpdateBusinessDTO from '../../core/business/dto/update-business.dto';
 import Business from '../../core/business/entities/business.entity';
 import { UserRole } from '../../core/user/entities/user.entity';
+import { JwtAuthGuard } from '../../core/guards/jwt-auth.guard';
 
 @Controller('businesses')
 @ApiTags('Businesses')
-@UseGuards(TokenGuard, RoleGuard)
+@UseGuards(JwtAuthGuard, RoleGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 export class BusinessController {
 	constructor(private readonly businessService: BusinessService) {}

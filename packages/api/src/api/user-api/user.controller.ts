@@ -15,7 +15,6 @@ import {
 import { Request } from 'express';
 import { RoleGuard } from '../../core/guards/role.guard';
 import { Roles } from '../../core/decorators/roles.decorator';
-import { TokenGuard } from '../../core/guards/token.guard';
 import { UserService } from '../../core/user/user.service';
 import { SelfGuard } from '../../core/guards/self.guard';
 import {
@@ -31,10 +30,11 @@ import CreateUserDTO from '../../core/user/dto/create-user.dto';
 import UpdateUserDTO from '../../core/user/dto/update-user.dto';
 import User, { UserRole } from '../../core/user/entities/user.entity';
 import { ForbiddenBasicActions, ForbiddenBasicException } from '../../core/exceptions/exceptions';
+import { JwtAuthGuard } from '../../core/guards/jwt-auth.guard';
 
 @Controller('users')
 @ApiTags('Users')
-@UseGuards(TokenGuard, RoleGuard)
+@UseGuards(JwtAuthGuard, RoleGuard)
 @UseInterceptors(ClassSerializerInterceptor)
 export class UserController {
 	constructor(private readonly userService: UserService) {}

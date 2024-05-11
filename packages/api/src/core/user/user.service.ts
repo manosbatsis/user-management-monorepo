@@ -40,10 +40,6 @@ export class UserService {
 		return await this.userRepository.findByEmail(email, isAuth);
 	}
 
-	async findOneByToken(token: string): Promise<User> {
-		return this.userRepository.findOneByToken(token);
-	}
-
 	async update(id: string, data: UpdateUserDTO): Promise<User> {
 		const user = await this.prisma.user.findFirst({ where: { id } });
 		const updateData = { ...data };
@@ -64,15 +60,6 @@ export class UserService {
 		}
 		// Update the user
 		return await this.userRepository.update(id, updateData);
-	}
-
-	async addToken(id: string, token: string): Promise<User> {
-		const user = await this.findOne(id);
-		// Check user existence
-		if (!user) {
-			throw new UserDoesNotExistException();
-		}
-		return User.from(await this.prisma.user.update({ where: { id }, data: { token } }));
 	}
 
 	async remove(id: string): Promise<void> {
