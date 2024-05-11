@@ -1,6 +1,12 @@
 "use client";
 import {AUTH_URL, TOKEN_KEY, TOKEN_REFRESH_KEY} from "./utils";
-import axios, {AxiosRequestConfig} from "axios";
+import axios, {
+  AxiosHeaders,
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+  AxiosResponse,
+  InternalAxiosRequestConfig
+} from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { IAuthenticationResponse, sessionHelper } from './sessionHelper';
 import {HttpError} from "@refinedev/core";
@@ -19,9 +25,9 @@ const refreshAuthLogic = (failedRequest: any) => {
       .post<IAuthenticationResponse>(`${AUTH_URL}/auth-refresh`, {
         refreshToken
       })
-      .then((tokenRefreshResponse: IAuthenticationResponse) => {
-        sessionHelper.resetUserSession(tokenRefreshResponse);
-        failedRequest.response.config.headers["Authorization"] = `Bearer ${tokenRefreshResponse.token}`;
+      .then((tokenRefreshResponse: AxiosResponse<IAuthenticationResponse>) => {
+        sessionHelper.resetUserSession(tokenRefreshResponse.data);
+        failedRequest.response.config.headers["Authorization"] = `Bearer ${tokenRefreshResponse.data.token}`;
         console.debug("Refreshed auth token");
         return Promise.resolve();
       });
@@ -32,7 +38,7 @@ createAuthRefreshInterceptor(axiosInstance, refreshAuthLogic, {
   statusCodes: [401, 403], // default: [ 401 ]
 });
 
-axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
+axiosInstance.interceptors.request.use((request: InternalAxiosRequestConfig) => {
   const token = localStorage.getItem(TOKEN_KEY);
   if (token) {
     if (request.headers) {
@@ -40,7 +46,7 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
     } else {
       request.headers = {
         Authorization: `Bearer ${token}`,
-      };
+      } as AxiosRequestHeaders;
     }
   }
 
