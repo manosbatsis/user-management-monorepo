@@ -28,12 +28,14 @@
     "@refinedev/nextjs-router": "^6.0.0",
     "@refinedev/react-hook-form": "^4.8.14",
     "@refinedev/simple-rest": "^5.0.1",
+    "axios": "^1.6.8",
     "axios-auth-refresh": "^3.3.6",
     "graphql-tag": "^2.12.6",
     "js-cookie": "^3.0.5",
     "next": "14.1.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.51.4"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

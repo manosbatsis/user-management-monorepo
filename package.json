@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "pnpm --stream -r build",
     "client": "pnpm --filter \"web\" run dev",
     "server": "pnpm --filter \"api\" run start:dev",
     "start": "pnpm --stream -r start",
