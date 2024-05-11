@@ -6,7 +6,7 @@ services:
         image: postgres
         restart: always
         environment:
-            - POSTGRES_DB=neststarter
+            - POSTGRES_DB=user_management
             - POSTGRES_USER=nest
             - POSTGRES_PASSWORD=password
         ports:

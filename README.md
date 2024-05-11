@@ -1,13 +1,41 @@
-# user-management-monorepo
+<h1>User Management Monorepo</h1>
+
+A sample to play around with [pnpM](https://pnpm.io/) (and eventually [Turborepo](https://turbo.build/)) monorepos, 
+[Prisma](https://www.prisma.io/) with [NestJS](https://nestjs.com/) and [Next.js](https://nextjs.org/) 
+with [Refine](https://refine.dev/).
+
+<!-- TOC -->
+  * [Prerequisites](#prerequisites)
+  * [Configuration](#configuration)
+    * [Installation](#installation-)
+    * [Server](#server)
+    * [Database](#database)
+      * [With Local Postgres](#with-local-postgres)
+      * [With Docker Compose](#with-docker-compose)
+    * [Database Schema](#database-schema)
+  * [Run Tests](#run-tests)
+  * [Run Apps](#run-apps)
+    * [Start the Server](#start-the-server)
+    * [Start the Client](#start-the-client)
+    * [Login](#login)
+<!-- TOC -->
 
 ## Prerequisites
 
-- Node 20.x
-- NPM 10.x
-- PNPM 8.9.0
+- Node v20.x
+- npm v10.x
+- pnpM v8.9.0
 - Docker Compose
 
 ## Configuration
+
+### Installation 
+
+Start by installing:
+
+```bash
+pnpm install
+```
 
 ### Server
 
@@ -80,3 +108,27 @@ HTML test reports for your browser are published in _packages/*/output_.
 
 > [!TIP]
 > Test results are also published as the build summary in Github Actions and a comment in Pull Requests.
+
+
+## Run Apps
+
+### Start the Server
+
+```bash
+pnpm run server
+```
+
+### Start the Client
+
+```bash
+pnpm run client
+```
+
+### Login
+
+Browse http://localhost:3001 and login with:
+
+- username: admin@test.com
+- password: Test123!
+
+
