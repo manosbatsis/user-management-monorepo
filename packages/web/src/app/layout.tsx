@@ -9,7 +9,6 @@ import routerProvider from "@refinedev/nextjs-router";
 
 import { dataProvider } from "@providers/data-provider";
 import { ColorModeContextProvider } from "@contexts/color-mode";
-import { Header } from "@components/header";
 import { authProvider } from "@providers/auth-provider";
 
 export const metadata: Metadata = {
@@ -19,9 +18,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-const CustomTitle = ({ collapsed }) => (
-  <div>{collapsed ? "User Admin" : "UA"}</div>
-);
+
 export default function RootLayout({
   children,
 }: Readonly<{
