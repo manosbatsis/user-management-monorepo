@@ -15,11 +15,7 @@ export class AuthService {
 	) {}
 
 	async validateUser(email: string, password: string): Promise<User> {
-		console.log('validateUser', email, password);
-		const hashedPassword = this.securityService.hashPassword(password);
-		console.log('validateUser, hashedPassword', hashedPassword);
 		let user = await this.userService.findOneByEmail(email, true);
-		console.log('validateUser', user);
 		if (user && this.securityService.comparePasswords(password, user.password)) {
 			// Delete the password from the response
 			delete user.password;

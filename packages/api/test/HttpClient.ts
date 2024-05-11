@@ -31,9 +31,11 @@ export default class HttpClient {
 		return new HttpClient(this.app, false);
 	}
 
-	public setUser(user: User) {
-		this.user = user;
-		this.setToken(user.token.toString());
+	public setUser(user: { token: string, user: User }) {
+
+		console.log("setUser", user);
+		this.user = user.user;
+		this.setToken(user.token);
 	}
 
 	public getUser(): User {
@@ -75,7 +77,7 @@ export default class HttpClient {
 	public async logAs(username?: string, password?: string): Promise<Chain> {
 		const response = await this.post('/auth/login', { email: username, password: password });
 		if (response.statusCode === HttpStatus.OK) {
-			this.setUser(response.json<User>());
+			this.setUser(response.json<{ token: string, user: User }>());
 		}
 		return response;
 	}
