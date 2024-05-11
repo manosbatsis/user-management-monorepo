@@ -1,5 +1,7 @@
 <h1>User Management Monorepo</h1>
 
+[![CI](https://github.com/manosbatsis/user-management-monorepo/actions/workflows/ci.yml/badge.svg)](https://github.com/manosbatsis/user-management-monorepo/actions/workflows/ci.yml)
+
 A sample to play around with [pnpM](https://pnpm.io/) (and eventually [Turborepo](https://turbo.build/)) monorepos, 
 [Prisma](https://www.prisma.io/) with [NestJS](https://nestjs.com/) and [Next.js](https://nextjs.org/) 
 with [Refine](https://refine.dev/).
