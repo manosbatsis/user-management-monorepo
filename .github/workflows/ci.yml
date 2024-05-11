@@ -45,7 +45,7 @@ jobs:
         uses: Harmon758/postgresql-action@v1.0.0
         with:
           postgresql version: '16.3'
-          postgresql db: neststarter
+          postgresql db: user_management
           postgresql user: nest
           postgresql password: password
 
